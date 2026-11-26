@@ -9,6 +9,7 @@
 
 using namespace std;
 
+const int MAX_PLAYERS = 10;
 struct player {
   string real_name;
   string gamer_tag;
@@ -20,11 +21,9 @@ struct player {
 };
 
 struct game {
-  int gameid;
-  string game;
-  player *topPlayer;
-  int kills;
-  int deaths;
+  int gameID;
+  string gameName;
+
 };
 
 struct fixture {
@@ -34,4 +33,13 @@ struct fixture {
   game match_stats;
 };
 
-void example(fixture fixtures[], float example1);
+/*struct team {
+  int teamID;
+  string teamName;
+};*/
+
+void readingInputfiles(string filename, player Players[], int* p_numPlayers);
+void writeToOutputFile(string filename, player Players[], int numPlayers);
+int searchForGame(const game Games[], int size, int mainID);
+
+
