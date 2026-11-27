@@ -10,7 +10,9 @@
 using namespace std;
 
 const int MAX_PLAYERS = 10;
+const int MAX_FIXTURES = 3;
 struct player {
+  int PlayerID;
   string real_name;
   string gamer_tag;
   string current_role;
@@ -30,16 +32,17 @@ struct fixture {
   int fixture_id;
   string opponent;
   string matchdate;
-  game match_stats;
+  float match_stats;
 };
 
-/*struct team {
-  int teamID;
-  string teamName;
-};*/
-
+// Function Prototypes : FileI/O and Linear Search 
 void readingInputfiles(string filename, player Players[], int* p_numPlayers);
-void writeToOutputFile(string filename, player Players[], int numPlayers);
-int searchForGame(const game Games[], int size, int mainID);
+void readingFixturesInputFiles(string filename, fixture Fixtures[], int*p_numFixtures);
+
+void writeToOutputFile(string filename, const player Players[], int numPlayers);
+void writingToFixturesOutputFile(string filename, const fixture Fixtures[], int numFixtures);
+
+int searchForPlayerID(const player Players[], int size, int playerID);
+
 
 

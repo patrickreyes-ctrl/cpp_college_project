@@ -8,24 +8,33 @@
 using namespace std;
 
 int main(void) { 
-    const int SIZE = 4;
-    game Games[SIZE] = {1,"Counter Strike_2",2,"DOTA",3,"LeagueOfLegends",4,"VALORANT"};
+    player Players[MAX_PLAYERS];
+    int numPlayers = 0;
+    readingInputfiles("existingPlayers.csv", Players, &numPlayers); // Calls the reading input function
+    
+    int playerID = 0;
 
-    int enterID = 0;
-    cout << "\nEnter Game ID to Search for!";
-    if(!(cin >> enterID)) {
+    // Prompts the user to input data and reads in the what the user typed
+    cout << "\nEnter a Player's ID to Search for!";
+    if(!(cin >> playerID)) {
         cout << "Number Inputted is Invalid!";
-        return 1;
     } 
 
-    int search = searchForGame(Games, SIZE, enterID);
+    // Calling the Linear Search Function
+    int search = searchForPlayerID(Players, numPlayers, playerID); 
 
-    if(search != -1) {
-        cout << "Game Selected: " << Games[search].gameName << " Is Aviliable!";
+    if(search == -1) {
+        cout << "Searching for Player ID: " << playerID << " Is Not Aviliable!"; // Checks every player but the ID doesn't match
     } else {
-        cout << "\nGame Selected: " << Games[search].gameName  << " Is Not Availiable!";
+        // Prints only if the ID inputted matches the player tag from the player struct
+        // Passing by elements
+        cout << "\nSearching for Player ID: " << Players[search].gamer_tag << " (ID " << Players[search].PlayerID << ") is " << Players[search].scout_status << "," << endl;
+        
     }
+
+     writeToOutputFile("outputPlayers.csv",Players, numPlayers );
     return 0;
+    
  }
  
 
